@@ -4,6 +4,10 @@ function Contact(first, last) {
   this.lastName = last;
 }
 
+Contact.prototype.name = function() {
+  return this.firstName + " " + this.lastName;
+}
+
 // User Interface Logic
 $(document).ready(function() {
   $("form#new-contact").submit(function(event) {
@@ -14,6 +18,13 @@ $(document).ready(function() {
 
     var newContact = new Contact(inputtedFirstName, inputtedLastName);
 
-    $("#contacts").append("<li>" + "<ul>" + "<li>" + newContact.firstName + "</li>" + "<li>" + newContact.lastName + "</li>" + "</ul>" + "</li>" + "<br>");
+    $("ul#contacts").append("<li><span class='contact'>" + newContact.name() + "</span></li>");
+
+    $(".contact").last().click(function() {
+      $("#show-contact").show();
+      $("#show-contact h2").text(newContact.firstName);
+      $(".first-name").text(newContact.firstName);
+      $(".last-name").text(newContact.lastName);
+    });
   });
 });
