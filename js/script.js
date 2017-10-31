@@ -2,6 +2,7 @@
 function Contact(first, last) {
   this.firstName = first;
   this.lastName = last;
+  this.addresses = [];
 }
 
 Contact.prototype.name = function() {
@@ -49,14 +50,19 @@ $(document).ready(function() {
       $(".first-name").text(newContact.firstName);
       $(".last-name").text(newContact.lastName);
 
+
       $(".new-address").each(function() {
         var inputtedStreet = $(this).find(".new-street").val();
         var inputtedCity = $(this).find("input.new-city").val();
         var inputtedState = $(this).find("input.new-state").val();
         var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState);
+        debugger;
         newContact.addresses.push(newAddress);
+        $('.addresses').text('');
+        newContact.addresses.forEach(function(address){
+          $('.addresses').append('<li>' + address.street + ', ' + address.city + ', ' + address.state + '</li>');
+        });
       });
-      })
     });
   });
 });
