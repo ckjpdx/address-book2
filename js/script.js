@@ -8,6 +8,12 @@ Contact.prototype.name = function() {
   return this.firstName + " " + this.lastName;
 }
 
+function Address(street, city, state) {
+  this.street = street;
+  this.city = city;
+  this.state = state;
+}
+
 // User Interface Logic
 $(document).ready(function() {
   $("form#new-contact").submit(function(event) {
